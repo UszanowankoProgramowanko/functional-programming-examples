@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Maybe monad with Monet.js</title>
+    <script src="../node_modules/monet/src/main/javascript/monet.js"></script>
+    <style>
+        textarea {
+            font-family: "Lucida Console", Monaco, monospace;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="task-json" rows="15" cols="40">
+{
+    "name": "Task #1",
+    "asignee": {
+        "name": "John",
+        "company": {
+            "name": "ACME",
+            "logo": {
+                "url": "acme_logo.png"
+            }
+        }
+    }
+}
+    </textarea><br/>
+    <button id="get-logo-button">Get Task's company logo URL</button><br/>
+    <span id="logo-url"></span>
+    <script>
+        function getter(propertyName) {
+            return function(object) {
+                return object[propertyName];
+            };
+        }
+
+        var getAsignee = getter('asignee');
+        var getCompany = getter('company');
+        var getLogo = getter('logo');
+        var getUrl = getter('url');
+
+        function getTaskCompanyLogo(task)
+        {
+            var maybeCompanyLogoUrl = Maybe.of(task)
+                    .map(getAsignee)
+                    .map(getCompany)
+                    .map(getLogo)
+                    .map(getUrl);
+
+            return maybeCompanyLogoUrl.val;
+        }
+
+        var jsonTextarea = document.getElementById('task-json');
+        var logoUrl = document.getElementById('logo-url');
+        document.getElementById('get-logo-button')
+            .addEventListener('click', function() {
+                try {
+                    var task = JSON.parse(jsonTextarea.value);
+                    logoUrl.innerText = getTaskCompanyLogo(task);
+                } catch (e) {
+                    alert('Error');
+                }
+            })
+        ;
+    </script>
+</body>
+</html>

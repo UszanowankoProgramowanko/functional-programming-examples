@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Compose with Lodash</title>
+    <script src="../node_modules/lodash/lodash.min.js"></script>
+</head>
+<body>
+    <p>Open webbrowser's console.</p>
+    <script>
+        function printIt(name) {
+            console.log(name);
+        }
+        function greeting(name) {
+            return "Hello " + name;
+        }
+        function getName(user) {
+            return user.name;
+        }
+
+        var greetUser = _.compose(printIt, greeting, getName);
+        var user = {
+            id: 123,
+            name: "Doge"
+        };
+
+        greetUser(user);
+
+    </script>
+</body>
+</html>

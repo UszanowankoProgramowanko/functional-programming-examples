@@ -1,0 +1,25 @@
+{
+  "name": "functional-programming-examples",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "Monad": "git://github.com/mbseid/Monad.js",
+    "lodash": "git://github.com/lodash/lodash",
+    "monet": "git://github.com/vViktorPL/monet.js",
+    "rx": "^2.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UszanowankoProgramowanko/functional-programming-examples.git"
+  },
+  "author": "Wiktor Toporek",
+  "license": "no license",
+  "bugs": {
+    "url": "https://github.com/UszanowankoProgramowanko/functional-programming-examples/issues"
+  },
+  "homepage": "https://github.com/UszanowankoProgramowanko/functional-programming-examples"
+}
